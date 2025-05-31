@@ -33,32 +33,23 @@ vim.o.confirm = true
 
 -- [[ Basic Keymaps ]]
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
-
--- Diagnostic keymaps
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
-
 vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
-
+-- windows
 vim.keymap.set('n', '<Left>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
 vim.keymap.set('n', '<Right>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
 vim.keymap.set('n', '<Down>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<Up>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 vim.keymap.set('n', '<leader>wk', 'gt', { desc = 'Move focus to the next tab' })
 vim.keymap.set('n', '<leader>wl', 'gT', { desc = 'Move focus to the next tab' })
---
--- resize windows
 vim.keymap.set('n', '<C-l>', '<cmd> vertical resize +5 <cr>', { desc = 'Vertical resize +5' })
 vim.keymap.set('n', '<C-h>', '<cmd> vertical resize -5 <cr>', { desc = 'Vertical resize -5' })
 vim.keymap.set('n', '<C-k>', '<cmd> horizontal resize +2 <cr>', { desc = 'Horizontal resize +2' })
 vim.keymap.set('n', '<C-j>', '<cmd> horizontal resize -2 <cr>', { desc = 'Vwertical resize -2' })
-
 vim.keymap.set('n', '<leader>wo', '<C-w>o', { desc = 'Maximize current window' })
 vim.keymap.set('n', '<leader>wt', '<cmd>tab split<CR>', { desc = 'Create new [T]ab' })
-
--- Make entering command-mode easy
+-- others
 vim.keymap.set('n', '<leader>;', ':', { desc = 'enter command mode' })
-
--- Shortcuts for closing files
 vim.keymap.set('n', '<C-q>', '<cmd>q<CR>', { desc = 'Close window' })
 vim.keymap.set('i', '<C-q>', '<Esc><cmd>q<CR>', { desc = 'Close window' })
 vim.keymap.set('n', '<leader>h', '<cmd>LspClangdSwitchSourceHeader<CR>', { noremap = true, silent = true })
@@ -262,6 +253,7 @@ require('lazy').setup({
   },
   {
     -- Main LSP Configuration
+    -- see https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md
     'neovim/nvim-lspconfig',
     dependencies = {
       -- Automatically install LSPs and related tools to stdpath for Neovim
