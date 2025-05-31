@@ -720,6 +720,7 @@ require('lazy').setup({
 
       -- ... and there is more!
       --  Check out: https://github.com/echasnovski/mini.nvim
+      require('mini.operators').setup()
     end,
   },
   { -- Highlight, edit, and navigate code
