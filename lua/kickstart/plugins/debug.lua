@@ -27,59 +27,93 @@ return {
   keys = {
     -- Basic debugging keymaps, feel free to change to your liking!
     {
-      '<F5>',
+      '<A-m>',
       function()
         require('dap').continue()
       end,
       desc = 'Debug: Start/Continue',
     },
     {
-      '<F1>',
+      '<A-M>',
+      function()
+        require('dap').run_last()
+      end,
+      desc = 'Debug: Start Last Session',
+    },
+    {
+      '<A-n>',
+      function()
+        require('dap').terminate()
+      end,
+      desc = 'Debug: Quit',
+    },
+    -- Toggle to see last session result. Without this, you can't see session output in case of unhandled exception.
+    {
+      '<A-N>',
+      function()
+        require('dapui').toggle()
+      end,
+      desc = 'Debug: Toggle Session',
+    },
+    {
+      '<A-k>',
+      function()
+        require('dap').run_to_cursor()
+      end,
+      desc = 'Debug: Run to Cursor',
+    },
+    {
+      '<A-l>',
       function()
         require('dap').step_into()
       end,
       desc = 'Debug: Step Into',
     },
     {
-      '<F2>',
+      '<A-j>',
       function()
         require('dap').step_over()
       end,
       desc = 'Debug: Step Over',
     },
     {
-      '<F3>',
+      '<A-h>',
       function()
         require('dap').step_out()
       end,
       desc = 'Debug: Step Out',
     },
     {
-      '<leader>b',
+      '<A-o>',
+      function()
+        require('dap.ui.widgets').hover()
+      end,
+      desc = 'Debug: H[o]ver Variables',
+    },
+    {
+      '<A-b>',
       function()
         require('dap').toggle_breakpoint()
       end,
-      desc = 'Debug: Toggle Breakpoint',
+      desc = '[D]ebug: Toggle [B]reakpoint',
     },
     {
-      '<leader>B',
+      '<A-B>',
       function()
         require('dap').set_breakpoint(vim.fn.input 'Breakpoint condition: ')
       end,
-      desc = 'Debug: Set Breakpoint',
-    },
-    -- Toggle to see last session result. Without this, you can't see session output in case of unhandled exception.
-    {
-      '<F7>',
-      function()
-        require('dapui').toggle()
-      end,
-      desc = 'Debug: See last session result.',
+      desc = '[D]ebug: Set Conditional [B]reakpoint',
     },
   },
   config = function()
     local dap = require 'dap'
     local dapui = require 'dapui'
+
+    vim.fn.sign_define('DapBreakpoint', { text = '🛑', texthl = '', linehl = '', numhl = '' })
+    vim.fn.sign_define('DapStopped', { text = '⏹️', texthl = '', linehl = '', numhl = '' })
+    vim.fn.sign_define('DapBreakpointCondition', { text = '🟡', texthl = '', linehl = '', numhl = '' })
+    vim.fn.sign_define('DapLogPoint', { text = '📜', texthl = '', linehl = '', numhl = '' })
+    vim.fn.sign_define('DapBreakpointRejected', { text = '❌', texthl = '', linehl = '', numhl = '' })
 
     require('mason-nvim-dap').setup {
       -- Makes a best effort to setup the various debuggers with
