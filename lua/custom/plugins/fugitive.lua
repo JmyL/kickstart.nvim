@@ -7,13 +7,6 @@ return {
     },
     silent = true,
     config = function()
-      vim.api.nvim_create_autocmd('FileType', {
-        pattern = 'fugitive',
-        callback = function()
-          vim.keymap.set('n', '<CR>', 'gf', { buffer = true })
-        end,
-      })
-
       local git_status_cursors = {}
 
       local group = vim.api.nvim_create_augroup('fugitive_cursor_restore', { clear = true })
