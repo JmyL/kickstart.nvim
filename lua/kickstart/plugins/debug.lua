@@ -1,11 +1,6 @@
 -- debug.lua
---
--- Shows how to use the DAP plugin to debug your code.
---
--- Primarily focused on configuring the debugger for Go, but can
--- be extended to other languages as well. That's why it's called
--- kickstart.nvim and not kitchen-sink.nvim ;)
 
+-- See https://github.com/mfussenegger/nvim-dap/blob/master/doc/dap.txt
 return {
   -- NOTE: Yes, you can install new plugins here!
   'mfussenegger/nvim-dap',
@@ -13,6 +8,7 @@ return {
   dependencies = {
     -- Creates a beautiful debugger UI
     'rcarriga/nvim-dap-ui',
+    'theHamsta/nvim-dap-virtual-text',
 
     -- Required dependency for nvim-dap-ui
     'nvim-neotest/nvim-nio',
@@ -27,33 +23,40 @@ return {
   keys = {
     -- Basic debugging keymaps, feel free to change to your liking!
     {
-      '<A-m>',
+      '<leader>ds',
       function()
         require('dap').continue()
       end,
-      desc = 'Debug: Start/Continue',
+      desc = '[D]ebug: [S]tart/Continue',
     },
     {
-      '<A-M>',
+      '<leader>dS',
       function()
         require('dap').run_last()
       end,
-      desc = 'Debug: Start Last Session',
+      desc = '[D]ebug: [S]tart Last Session',
     },
     {
-      '<A-n>',
+      '<leader>dr',
+      function()
+        require('dap').restart()
+      end,
+      desc = '[D]ebug: [R]e-start',
+    },
+    {
+      '<leader>dq',
       function()
         require('dap').terminate()
       end,
-      desc = 'Debug: Quit',
+      desc = '[D]ebug: [Q]uit',
     },
     -- Toggle to see last session result. Without this, you can't see session output in case of unhandled exception.
     {
-      '<A-N>',
+      '<leader>dt',
       function()
         require('dapui').toggle()
       end,
-      desc = 'Debug: Toggle Session',
+      desc = '[D]ebug: [T]oggle Session',
     },
     {
       '<A-k>',
@@ -91,18 +94,18 @@ return {
       desc = 'Debug: H[o]ver Variables',
     },
     {
-      '<A-b>',
+      '<leader>db',
       function()
         require('dap').toggle_breakpoint()
       end,
       desc = '[D]ebug: Toggle [B]reakpoint',
     },
     {
-      '<A-B>',
+      '<leader>dc',
       function()
         require('dap').set_breakpoint(vim.fn.input 'Breakpoint condition: ')
       end,
-      desc = '[D]ebug: Set Conditional [B]reakpoint',
+      desc = '[D]ebug: Set [C]onditional Breakpoint',
     },
   },
   config = function()
@@ -110,9 +113,9 @@ return {
     local dapui = require 'dapui'
 
     vim.fn.sign_define('DapBreakpoint', { text = '🛑', texthl = '', linehl = '', numhl = '' })
-    vim.fn.sign_define('DapStopped', { text = '⏹️', texthl = '', linehl = '', numhl = '' })
+    vim.fn.sign_define('DapStopped', { text = '⏸️', texthl = 'Grey', linehl = '', numhl = '' })
     vim.fn.sign_define('DapBreakpointCondition', { text = '🟡', texthl = '', linehl = '', numhl = '' })
-    vim.fn.sign_define('DapLogPoint', { text = '📜', texthl = '', linehl = '', numhl = '' })
+    vim.fn.sign_define('DapLogPoint', { text = '📝', texthl = '', linehl = '', numhl = '' })
     vim.fn.sign_define('DapBreakpointRejected', { text = '❌', texthl = '', linehl = '', numhl = '' })
 
     require('mason-nvim-dap').setup {
@@ -166,9 +169,21 @@ return {
     --   vim.fn.sign_define(tp, { text = icon, texthl = hl, numhl = hl })
     -- end
 
-    dap.listeners.after.event_initialized['dapui_config'] = dapui.open
-    dap.listeners.before.event_terminated['dapui_config'] = dapui.close
-    dap.listeners.before.event_exited['dapui_config'] = dapui.close
+    dap.listeners.before.attach.dapui_config = function()
+      dapui.open()
+    end
+    dap.listeners.before.launch.dapui_config = function()
+      dapui.open()
+    end
+    dap.listeners.before.event_terminated.dapui_config = function()
+      dapui.close()
+    end
+    dap.listeners.before.event_exited.dapui_config = function()
+      dapui.close()
+    end
+
+    -- Install virtual text
+    require('nvim-dap-virtual-text').setup { commented = true }
 
     -- Install golang specific config
     require('dap-go').setup {
