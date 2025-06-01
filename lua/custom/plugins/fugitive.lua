@@ -3,7 +3,44 @@ return {
     'tpope/vim-fugitive',
     lazy = false,
     keys = {
-      { '<leader>gs', ':Git<CR>', desc = '[G]it [s]tatus' },
+      { '<leader>gs', ':0Git<CR>', desc = '[G]it [s]tatus' },
     },
+    silent = true,
+    config = function()
+      vim.api.nvim_create_autocmd('FileType', {
+        pattern = 'fugitive',
+        callback = function()
+          vim.keymap.set('n', '<CR>', 'gf', { buffer = true })
+        end,
+      })
+
+      local git_status_cursors = {}
+
+      local group = vim.api.nvim_create_augroup('fugitive_cursor_restore', { clear = true })
+
+      vim.api.nvim_create_autocmd('BufLeave', {
+        group = group,
+        pattern = 'fugitive://*',
+        callback = function()
+          local bufname = vim.fn.bufname()
+          git_status_cursors[bufname] = vim.fn.line '.'
+          print('BufLeave: Saved cursor position for', bufname, ':', git_status_cursors[bufname])
+        end,
+      })
+
+      vim.api.nvim_create_autocmd('BufEnter', {
+        group = group,
+        pattern = 'fugitive://*',
+        callback = function()
+          local bufname = vim.fn.bufname()
+          if git_status_cursors[bufname] then
+            print('BufEnter: Restoring cursor position for', bufname, ':', git_status_cursors[bufname])
+            vim.cmd('normal! ' .. git_status_cursors[bufname] .. 'G')
+          else
+            print('BufEnter: No cursor position to restore for', bufname)
+          end
+        end,
+      })
+    end,
   },
 }
