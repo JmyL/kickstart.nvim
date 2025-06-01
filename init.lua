@@ -179,6 +179,7 @@ require('lazy').setup({
 
       -- [[ Configure Telescope ]]
       -- See `:help telescope` and `:help telescope.setup()`
+      local builtin = require 'telescope.builtin'
       require('telescope').setup {
         -- You can put your default mappings / updates / etc. in here
         --  All the info you're looking for is in `:help telescope.setup()`
@@ -192,6 +193,12 @@ require('lazy').setup({
         extensions = {
           ['ui-select'] = {
             require('telescope.themes').get_dropdown(),
+          },
+          helpgrep = {
+            ignore_paths = {
+              vim.fn.stdpath 'state' .. '/lazy/readme',
+            },
+            default_grep = builtin.live_grep,
           },
         },
       }
@@ -235,6 +242,13 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>sn', function()
         builtin.find_files { cwd = vim.fn.stdpath 'config' }
       end, { desc = '[S]earch [N]eovim files' })
+    end,
+  },
+  {
+    'catgoose/telescope-helpgrep.nvim',
+    dependencies = { 'nvim-telescope/telescope.nvim' },
+    config = function()
+      require('telescope').load_extension 'helpgrep'
     end,
   },
 
