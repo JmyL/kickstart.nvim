@@ -13,7 +13,7 @@ return {
 
       vim.api.nvim_create_autocmd('BufLeave', {
         group = group,
-        pattern = 'fugitive://*',
+        pattern = 'fugitive://*.git//',
         callback = function()
           local bufname = vim.fn.bufname()
           git_status_cursors[bufname] = vim.fn.line '.'
@@ -23,7 +23,7 @@ return {
 
       vim.api.nvim_create_autocmd('BufEnter', {
         group = group,
-        pattern = 'fugitive://*',
+        pattern = 'fugitive://*.git//',
         callback = function()
           local bufname = vim.fn.bufname()
           if git_status_cursors[bufname] then
