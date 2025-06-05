@@ -8,7 +8,7 @@ return {
   dependencies = {
     -- Creates a beautiful debugger UI
     'rcarriga/nvim-dap-ui',
-    'theHamsta/nvim-dap-virtual-text',
+    -- 'theHamsta/nvim-dap-virtual-text',
 
     -- Required dependency for nvim-dap-ui
     'nvim-neotest/nvim-nio',
@@ -184,7 +184,7 @@ return {
     end
 
     -- Install virtual text
-    require('nvim-dap-virtual-text').setup { commented = true }
+    -- require('nvim-dap-virtual-text').setup { commented = true }
 
     -- Install golang specific config
     require('dap-go').setup {
