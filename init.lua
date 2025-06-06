@@ -35,6 +35,7 @@ vim.o.confirm = true
 vim.keymap.set('n', '<Esc>', '<cmd>nohlsearch<CR>')
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
+
 -- windows
 vim.keymap.set('n', '<Left>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
 vim.keymap.set('n', '<Right>', '<C-w><C-l>', { desc = 'Move focus to the right window' })
@@ -53,7 +54,9 @@ vim.keymap.set('n', '<leader>;', ':', { desc = 'enter command mode' })
 vim.keymap.set('n', '<C-q>', '<cmd>q<CR>', { desc = 'Close window' })
 vim.keymap.set('i', '<C-q>', '<Esc><cmd>q<CR>', { desc = 'Close window' })
 vim.keymap.set('n', '<leader>h', '<cmd>LspClangdSwitchSourceHeader<CR>', { noremap = true, silent = true })
-vim.keymap.set({ 'n', 'v' }, '<leader>x', '<cmd>.lua<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>x', '<cmd>lua<CR>', { noremap = true, silent = true })
+vim.keymap.set('v', '<leader>x', "<cmd>'<,'>lua<CR>", { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>X', ':%lua<CR>', { noremap = true, silent = true })
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
