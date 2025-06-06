@@ -8,6 +8,9 @@ return {
       { '<leader>ah', ':CodeCompanionHistory<CR>', desc = '[a]i - [h]istory' },
     },
     opts = {
+      keymaps = {
+        show_shortcuts = 'g?',
+      },
       extensions = {
         history = {
           enabled = true,
