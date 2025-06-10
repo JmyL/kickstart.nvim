@@ -54,7 +54,7 @@ vim.keymap.set('n', '<leader>;', ':', { desc = 'enter command mode' })
 vim.keymap.set('n', '<C-q>', '<cmd>q<CR>', { desc = 'Close window' })
 vim.keymap.set('i', '<C-q>', '<Esc><cmd>q<CR>', { desc = 'Close window' })
 vim.keymap.set('n', '<leader>h', '<cmd>LspClangdSwitchSourceHeader<CR>', { noremap = true, silent = true })
-vim.keymap.set('n', '<leader>x', '<cmd>lua<CR>', { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>x', '<cmd>.lua<CR>', { noremap = true, silent = true })
 vim.keymap.set('v', '<leader>x', "<cmd>'<,'>lua<CR>", { noremap = true, silent = true })
 vim.keymap.set('n', '<leader>X', ':%lua<CR>', { noremap = true, silent = true })
 
