@@ -37,63 +37,6 @@ return {
       desc = '[D]ebug: [S]tart Last Session',
     },
     {
-      '<leader>dr',
-      function()
-        require('dap').restart()
-      end,
-      desc = '[D]ebug: [R]e-start',
-    },
-    {
-      '<leader>dq',
-      function()
-        require('dap').terminate()
-      end,
-      desc = '[D]ebug: [Q]uit',
-    },
-    -- Toggle to see last session result. Without this, you can't see session output in case of unhandled exception.
-    {
-      '<leader>dt',
-      function()
-        require('dapui').toggle()
-      end,
-      desc = '[D]ebug: [T]oggle Session',
-    },
-    {
-      '<A-k>',
-      function()
-        require('dap').run_to_cursor()
-      end,
-      desc = 'Debug: Run to Cursor',
-    },
-    {
-      '<A-l>',
-      function()
-        require('dap').step_into()
-      end,
-      desc = 'Debug: Step Into',
-    },
-    {
-      '<A-j>',
-      function()
-        require('dap').step_over()
-      end,
-      desc = 'Debug: Step Over',
-    },
-    {
-      '<A-h>',
-      function()
-        require('dap').step_out()
-      end,
-      desc = 'Debug: Step Out',
-    },
-    {
-      '<A-o>',
-      function()
-        require('dap.ui.widgets').hover()
-      end,
-      desc = 'Debug: H[o]ver Variables',
-    },
-    {
       '<leader>db',
       function()
         require('dap').toggle_breakpoint()
@@ -117,6 +60,32 @@ return {
     vim.fn.sign_define('DapBreakpointCondition', { text = '🟡', texthl = '', linehl = '', numhl = '' })
     vim.fn.sign_define('DapLogPoint', { text = '📝', texthl = '', linehl = '', numhl = '' })
     vim.fn.sign_define('DapBreakpointRejected', { text = '❌', texthl = '', linehl = '', numhl = '' })
+
+    vim.keymap.set('n', '<leader>dr', function()
+      require('dap').restart()
+    end, { desc = '[D]ebug: [R]e-start' })
+    vim.keymap.set('n', '<leader>dq', function()
+      require('dap').terminate()
+    end, { desc = '[D]ebug: [Q]uit' })
+    vim.keymap.set('n', '<A-k>', function()
+      require('dap').run_to_cursor()
+    end, { desc = 'Debug: Run to Cursor' })
+    vim.keymap.set('n', '<A-l>', function()
+      require('dap').step_into()
+    end, { desc = 'Debug: Step Into' })
+    vim.keymap.set('n', '<A-j>', function()
+      require('dap').step_over()
+    end, { desc = 'Debug: Step Over' })
+    vim.keymap.set('n', '<A-h>', function()
+      require('dap').step_out()
+    end, { desc = 'Debug: Step Out' })
+    vim.keymap.set('n', '<A-o>', function()
+      require('dap.ui.widgets').hover()
+    end, { desc = 'Debug: H[o]ver Variables' })
+    -- Toggle to see last session result. Without this, you can't see session output in case of unhandled exception.
+    vim.keymap.set('n', '<leader>dt', function()
+      require('dapui').toggle()
+    end, { desc = '[D]ebug: [T]oggle Session' })
 
     require('mason-nvim-dap').setup {
       -- Makes a best effort to setup the various debuggers with
