@@ -10,6 +10,11 @@ return {
     opts = {
       completions = { blink = { enabled = true } },
       file_types = { 'markdown', 'codecompanion' },
+      anti_conceal = {
+        ignore = {
+          head_background = true,
+        },
+      },
     },
   },
 }
