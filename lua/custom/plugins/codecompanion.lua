@@ -3,7 +3,9 @@ return {
     'olimorris/codecompanion.nvim',
     cmd = { 'CodeCompanionChat' },
     lazy = false,
+    -- check https://github.com/olimorris/codecompanion.nvim/blob/main/lua/codecompanion/config.lua
     opts = {
+      prompt_library = require 'config.codecompanion.prompt_library',
       display = {
         window = {
           layout = 'vertical',
