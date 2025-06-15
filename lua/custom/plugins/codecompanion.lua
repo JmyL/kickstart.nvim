@@ -174,9 +174,9 @@ return {
       },
     },
     init = function()
-      require('config.fidget-spinner'):init()
-      vim.cmd [[cab c CodeCompanion]]
-      vim.cmd [[cab cc CodeCompanionChat]]
+      require('config.codecompanion.fidget-spinner'):init()
+      vim.api.nvim_create_user_command('C', 'CodeCompanion', {})
+      vim.api.nvim_create_user_command('CC', 'CodeCompanionChat', {})
       vim.keymap.set('n', '<leader>ao', ':CodeCompanionChat Toggle<CR>', { desc = '[a]i - t[o]ggle chat' })
       vim.keymap.set('n', '<leader>aO', ':CodeCompanionChat<CR>', { desc = '[a]i - [O]pen new chat' })
       vim.keymap.set('n', '<leader>ah', ':CodeCompanionHistory<CR>', { desc = '[a]i - [h]istory' })
