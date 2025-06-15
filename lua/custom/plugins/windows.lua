@@ -15,7 +15,7 @@ return {
       vim.o.equalalways = false
       require('windows').setup {
         autowidth = {
-          enable = true,
+          enable = false,
           filetype = {
             help = false,
           },
@@ -25,8 +25,8 @@ return {
           filetype = { 'NvimTree', 'neo-tree', 'fugitiveblame', 'gundo' },
         },
         animation = {
-          enable = true,
-          duration = 150,
+          enable = false,
+          duration = 70,
           fps = 30,
           easing = 'in_out_sine',
         },
