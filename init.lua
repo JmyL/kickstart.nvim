@@ -453,6 +453,7 @@ require('lazy').setup({
           },
         } or {},
         virtual_text = {
+          current_line = true,
           source = 'if_many',
           spacing = 2,
           format = function(diagnostic)
