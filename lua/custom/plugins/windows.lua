@@ -14,6 +14,16 @@ return {
       vim.o.winminwidth = 5
       vim.o.equalalways = false
       require('windows').setup {
+        autowidth = {
+          enable = true,
+          filetype = {
+            help = false,
+          },
+        },
+        ignore = {
+          buftype = { 'quickfix' },
+          filetype = { 'NvimTree', 'neo-tree', 'fugitiveblame', 'gundo' },
+        },
         animation = {
           enable = true,
           duration = 150,
