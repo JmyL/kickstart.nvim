@@ -203,6 +203,13 @@ require('lazy').setup({
         --     theme = 'ivy',
         --   },
         -- },
+        pickers = {
+          live_grep = {
+            additional_args = function()
+              return { '--case-sensitive' }
+            end,
+          },
+        },
         extensions = {
           ['ui-select'] = {
             require('telescope.themes').get_dropdown {},
