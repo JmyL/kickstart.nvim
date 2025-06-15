@@ -33,72 +33,80 @@ return {
             ['buffer'] = {
               keymaps = {
                 modes = {
-                  i = '<C-b>',
-                  n = { '<C-b>' },
+                  i = '<A-b>',
+                  n = { '<A-b>' },
                 },
               },
             },
             ['fetch'] = {
               keymaps = {
                 modes = {
-                  i = '<C-g>',
-                  n = { '<C-g>' },
+                  i = '<A-g>',
+                  n = { '<A-g>' },
                 },
               },
             },
             ['file'] = {
               keymaps = {
                 modes = {
-                  i = '<C-f>',
-                  n = { '<C-f>' },
+                  i = '<A-f>',
+                  n = { '<A-f>' },
                 },
               },
             },
             ['image'] = {
               keymaps = {
                 modes = {
-                  i = '<C-i>',
-                  n = { '<C-i>' },
+                  i = '<A-i>',
+                  n = { '<A-i>' },
                 },
               },
             },
             ['now'] = {
               keymaps = {
                 modes = {
-                  i = '<C-n>',
-                  n = { '<C-n>' },
+                  i = '<A-n>',
+                  n = { '<A-n>' },
                 },
               },
             },
             ['help'] = {
               keymaps = {
                 modes = {
-                  i = '<C-h>',
-                  n = { '<C-h>' },
+                  i = '<A-h>',
+                  n = { '<A-h>' },
                 },
               },
             },
             ['symbols'] = {
               keymaps = {
                 modes = {
-                  i = '<C-o>',
-                  n = { '<C-o>' },
+                  i = '<A-o>',
+                  n = { '<A-o>' },
                 },
               },
             },
             ['terminal'] = {
               keymaps = {
                 modes = {
-                  i = '<C-t>',
-                  n = { '<C-t>' },
+                  i = '<A-t>',
+                  n = { '<A-t>' },
                 },
               },
             },
             ['workspace'] = {
               keymaps = {
                 modes = {
-                  i = '<C-p>',
-                  n = { '<C-p>' },
+                  i = '<A-p>',
+                  n = { '<A-p>' },
+                },
+              },
+            },
+            ['quickfix'] = {
+              keymaps = {
+                modes = {
+                  i = '<A-q>',
+                  n = { '<A-q>' },
                 },
               },
             },
