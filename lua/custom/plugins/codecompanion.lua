@@ -183,8 +183,27 @@ return {
     },
     init = function()
       require('config.codecompanion.fidget-spinner'):init()
-      vim.api.nvim_create_user_command('C', 'CodeCompanion', {})
-      vim.api.nvim_create_user_command('CC', 'CodeCompanionChat', {})
+      vim.api.nvim_create_user_command('C', function(opts)
+        local cmd = 'CodeCompanion'
+        if opts.range > 0 then
+          cmd = string.format("'<,'>%s", cmd)
+        end
+        if opts.args ~= '' then
+          cmd = cmd .. ' ' .. opts.args
+        end
+        vim.cmd(cmd)
+      end, { range = true, nargs = '*' })
+
+      vim.api.nvim_create_user_command('CC', function(opts)
+        local cmd = 'CodeCompanionChat'
+        if opts.range > 0 then
+          cmd = string.format("'<,'>%s", cmd)
+        end
+        if opts.args ~= '' then
+          cmd = cmd .. ' ' .. opts.args
+        end
+        vim.cmd(cmd)
+      end, { range = true, nargs = '*' })
       vim.keymap.set('n', '<leader>ao', ':CodeCompanionChat Toggle<CR>', { desc = '[a]i - t[o]ggle chat' })
       vim.keymap.set('n', '<leader>aO', ':CodeCompanionChat<CR>', { desc = '[a]i - [O]pen new chat' })
       vim.keymap.set('n', '<leader>ah', ':CodeCompanionHistory<CR>', { desc = '[a]i - [h]istory' })
