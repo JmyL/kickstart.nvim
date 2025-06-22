@@ -38,6 +38,7 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 vim.keymap.set('t', '<Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 vim.keymap.set('n', '<leader>C', '"_c$', { noremap = true, silent = true })
 vim.keymap.set('n', '<leader>c', '"_c', { noremap = true, silent = true })
+vim.keymap.set('n', '<M-.>', '@@', { noremap = true, silent = true })
 
 -- windows
 vim.keymap.set('n', '<Left>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
