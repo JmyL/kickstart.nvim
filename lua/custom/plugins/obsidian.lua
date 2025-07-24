@@ -39,6 +39,17 @@ return {
       -- see below for full list of options 👇
     },
     init = function()
+      local Snacks = require 'snacks'
+
+      local function snack_input_and_execute(prompt_text, command_prefix)
+        Snacks.input({
+          prompt = prompt_text,
+        }, function(input)
+          if input and input ~= '' then
+            vim.cmd(command_prefix .. ' ' .. vim.fn.shellescape(input))
+          end
+        end)
+      end
       vim.keymap.set({ 'n', 'v' }, '<leader>oo', '<cmd>cd ~/Documents/Obsidian<CR> <cmd>ObsidianOpen<CR>', { desc = 'Open Obsidian' })
       vim.keymap.set({ 'n', 'v' }, '<leader>oq', '<cmd>cd -<CR>', { desc = 'Quit Obsidian' })
 
