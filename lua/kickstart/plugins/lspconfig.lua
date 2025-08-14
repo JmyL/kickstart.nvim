@@ -244,6 +244,15 @@ return {
             },
           },
         },
+        yamlls = {
+          settings = {
+            yaml = {
+              schemas = {
+                ['https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json'] = 'docker-compose.yml',
+              },
+            },
+          },
+        },
       }
 
       -- Ensure the servers and tools above are installed
@@ -265,6 +274,7 @@ return {
         'shfmt', -- Used to format shell scripts
         'shellcheck', -- Used for shell script diagnostics
         'bash-language-server', -- Bash LSP
+        'prettier',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
