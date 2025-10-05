@@ -253,6 +253,23 @@ return {
             },
           },
         },
+        jsonls = {},
+
+        texlab = {
+          settings = {
+            texlab = {
+              build = {
+                onSave = true,
+                forwardSearchAfter = true,
+              },
+              forwardSearch = {
+                executable = 'zathura', -- Change to your preferred PDF viewer
+                args = { '--synctex-forward', '%l:1:%f', '%p' },
+              },
+              chktex = { onOpenAndSave = true },
+            },
+          },
+        },
       }
 
       -- Ensure the servers and tools above are installed
@@ -275,6 +292,7 @@ return {
         'shellcheck', -- Used for shell script diagnostics
         'bash-language-server', -- Bash LSP
         'prettier',
+        'latexindent',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 

@@ -33,6 +33,7 @@ return {
         lua = { 'stylua' },
         bash = { 'shfmt' },
         yaml = { 'prettier' },
+        tex = { 'latexindent' },
         -- Conform can also run multiple formatters sequentially
         -- python = { "isort", "black" },
         --
@@ -42,6 +43,11 @@ return {
       formatters = {
         prettier = {
           prepend_args = { '--editorconfig' },
+        },
+        latexindent = {
+          command = 'latexindent', -- optional, default is 'latexindent'
+          args = { '-' }, -- reads from stdin, writes to stdout
+          stdin = true,
         },
       },
     },
