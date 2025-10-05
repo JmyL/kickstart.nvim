@@ -133,32 +133,50 @@ return {
         },
       },
       adapters = {
-        openai = function()
-          return require('codecompanion.adapters').extend('openai', {
-            env = {
-              api_key = os.getenv 'OPENAI_API_KEY',
-            },
-          })
-        end,
-        copilot = function()
-          return require('codecompanion.adapters').extend('copilot', {
-            schema = {
-              model = {
-                -- default = "claude-3.5-sonnet",
-                -- default = "o3-mini-2025-01-31",
-                -- default = 'gpt-4o',
-                default = 'claude-3.7-sonnet',
-                -- default = "claude-3.7-sonnet-thought",
-                -- default = "gemini-2.0-flash-001",
-                -- default = "o1-2024-12-17",
-                -- default = "o1-mini-2024-09-12",
+        http = {
+          -- openai = function()
+          --   return require('codecompanion.adapters').extend('openai', {
+          --     env = {
+          --       api_key = os.getenv 'OPENAI_API_KEY',
+          --     },
+          --     schema = {
+          --       model = {
+          --         -- default = "claude-3.5-sonnet",
+          --         -- default = "o3-mini-2025-01-31",
+          --         default = 'gpt-4.1o',
+          --         -- default = 'claude-3.7-sonnet',
+          --         -- default = "claude-3.7-sonnet-thought",
+          --         -- default = "gemini-2.0-flash-001",
+          --         -- default = "o1-2024-12-17",
+          --         -- default = "o1-mini-2024-09-12",
+          --       },
+          --       max_tokens = {
+          --         -- default = 9192,
+          --       },
+          --     },
+          --   })
+          -- end,
+          copilot = function()
+            return require('codecompanion.adapters').extend('copilot', {
+              schema = {
+                model = {
+                  -- default = "claude-3.5-sonnet",
+                  -- default = "o3-mini-2025-01-31",
+                  default = 'gpt-4.1',
+                  -- default = 'gpt-4o',
+                  -- default = 'claude-3.7-sonnet',
+                  -- default = "claude-3.7-sonnet-thought",
+                  -- default = "gemini-2.0-flash-001",
+                  -- default = "o1-2024-12-17",
+                  -- default = "o1-mini-2024-09-12",
+                },
+                max_tokens = {
+                  -- default = 9192,
+                },
               },
-              max_tokens = {
-                -- default = 9192,
-              },
-            },
-          })
-        end,
+            })
+          end,
+        },
       },
       extensions = {
         history = {
