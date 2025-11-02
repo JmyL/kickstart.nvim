@@ -8,6 +8,25 @@ require 'keymaps'
 require 'lazy-bootstrap'
 require 'lazy-plugins'
 
+vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
+  pattern = '*.asc',
+  callback = function()
+    vim.bo.filetype = 'asc'
+    vim.cmd [[
+      syntax match AscHttpsUrl /https:\/\/\S\+/ conceal cchar=🔗
+      setlocal conceallevel=2
+    ]]
+    vim.keymap.set('n', 'gX', function()
+      local line = vim.api.nvim_get_current_line()
+      local url = line:match 'https://%S+'
+      if url then
+        vim.fn.jobstart({ 'xdg-open', url }, { detach = true })
+      else
+        print 'No URL found under cursor'
+      end
+    end, { buffer = true })
+  end,
+})
 -- require 'config.terminal'
 
 -- The line beneath this is called `modeline`. See `:help modeline`
