@@ -34,6 +34,7 @@ return {
         bash = { 'shfmt' },
         yaml = { 'prettier' },
         tex = { 'latexindent' },
+        nix = { 'nixfmt' },
         -- Conform can also run multiple formatters sequentially
         -- python = { "isort", "black" },
         --

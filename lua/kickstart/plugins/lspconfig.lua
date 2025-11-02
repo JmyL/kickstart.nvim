@@ -293,6 +293,7 @@ return {
         'bash-language-server', -- Bash LSP
         'prettier',
         'latexindent',
+        'nixfmt',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
