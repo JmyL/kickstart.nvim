@@ -35,6 +35,8 @@ return {
         yaml = { 'prettier' },
         tex = { 'latexindent' },
         nix = { 'nixfmt' },
+        proto = { 'buf' },
+        cmake = { 'gersemi' },
         -- Conform can also run multiple formatters sequentially
         -- python = { "isort", "black" },
         --

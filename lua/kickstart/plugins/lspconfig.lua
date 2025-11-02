@@ -294,6 +294,8 @@ return {
         'prettier',
         'latexindent',
         'nixfmt',
+        'buf',
+        'gersemi',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
