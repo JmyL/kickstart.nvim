@@ -69,9 +69,9 @@ return {
         -- },
         pickers = {
           live_grep = {
-            additional_args = function()
-              return { '--case-sensitive' }
-            end,
+            -- additional_args = function()
+            --   return { '--case-sensitive' }
+            -- end,
           },
         },
         extensions = {
