@@ -34,7 +34,7 @@ return {
         bash = { 'shfmt' },
         yaml = { 'prettier' },
         tex = { 'latexindent' },
-        nix = { 'nixfmt' },
+        nix = { 'alejandra' },
         proto = { 'buf' },
         cmake = { 'gersemi' },
         -- Conform can also run multiple formatters sequentially

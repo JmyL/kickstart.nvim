@@ -293,7 +293,7 @@ return {
         'bash-language-server', -- Bash LSP
         'prettier',
         'latexindent',
-        'nixfmt',
+        'alejandra',
         'buf',
         'gersemi',
       })
