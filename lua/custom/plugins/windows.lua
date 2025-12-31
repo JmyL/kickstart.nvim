@@ -3,7 +3,7 @@ return {
     'anuvyklack/windows.nvim',
     lazy = false,
     keys = {
-      { '<leader>wm', '<cmd>WindowsMaximize<cr>', desc = '[w]indows [m]aximize' },
+      { '<leader>m', '<cmd>WindowsMaximize<cr>', desc = 'windows [m]aximize' },
     },
     dependencies = {
       'anuvyklack/middleclass',
