@@ -79,9 +79,9 @@ return {
     vim.keymap.set('n', '<C-h>', function()
       require('dap').step_out()
     end, { desc = 'Debug: Step Out' })
-    vim.keymap.set('n', '<C-o>', function()
+    vim.keymap.set('n', '<C-p>', function()
       require('dap.ui.widgets').hover()
-    end, { desc = 'Debug: H[o]ver Variables' })
+    end, { desc = 'Debug: Show variables on [p]op up' })
     -- Toggle to see last session result. Without this, you can't see session output in case of unhandled exception.
     vim.keymap.set('n', '<leader>dt', function()
       require('dapui').toggle()
